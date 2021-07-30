@@ -69,7 +69,6 @@ def check_token(json_data):
 # then we have split it by comma. Then we can begin to parse each 'channel' and see if it is valid. We are solely
 # focusing on the format of the strings.
 # If we run into errors, we shall throw a fatal error.
-# TODO : Add support for a map of channels
 def check_channels(json_data):
     if 'channels' in json_data:
         if json_data.get('channels') == "":

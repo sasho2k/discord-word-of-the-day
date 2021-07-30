@@ -75,6 +75,7 @@ class MyClient(discord.Client):
     # TODO : Implement a function to request previous WOTD. (Must pass parameter to get request in job.py)
     # TODO : Implement a function to set the desired time
     # TODO : Implement a function to set the sending channel/s
+    # TODO : Implement a function for users to sign up to be DM'ed.
     async def on_message(self, message):
         if message.author == self.user:
             return

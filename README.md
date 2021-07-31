@@ -2,6 +2,27 @@
 
 <img src="https://play-lh.googleusercontent.com/BYoyK1fiFfpH8JTutWAlG_Tqo-Ati-7tLcdYijU-8_L7SQxpuYBo7tzxrzDGXk8JC4hv" width="250" height="250"/>
 
+# Quickstart
+To run the bot. Do this.
+
+Settings.json should look like this.
+```
+{
+  "token": "your_token!",
+  "channels": "12345,2131,421421",
+  "time": "12:00"
+}
+```
+Or something like this.
+```
+{
+  "token": "your_other_token!",
+  "channels": "12345",
+  "time": "09:05"
+}
+```
+**ANYTHING ELSE WILL NOT WORK!**
+
 ## About This
 
 Word of the Day is a discord.py bot that I originally wrote for fun. 
@@ -10,7 +31,7 @@ Along the way, I decided it would be good to share it.
 
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg">
 
-*Sound interesting? Below is all the boring technical info.*
+*Sound interesting? More information below.*
 
 ## Contents
 

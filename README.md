@@ -3,7 +3,7 @@
 
 *Directly below is a quickstart to setting up and running the bot. [GETTING STARTED](#getting-started)*
 
-<img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
+<img src="https://i.giphy.com/media/3orifg4eeMqIhe66uk/200.webp" width="600" height="500"/>
 
 # Contents
 

@@ -12,6 +12,7 @@
 - [Settings JSON](#settings-json)
 - [How It Works](#how-it-works)
 - [TODO](#todo)
+- [Contact](#contact)
 
 # About This Project
 
@@ -41,7 +42,7 @@ Getting the bot running is fairly simple. It just requires you to have python an
 
 <img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
 
-### Settings JSON
+# Settings JSON
 The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
 This is what your settings.json should look like when you are preparing to run the bot.
@@ -86,7 +87,7 @@ Or something like this.
 
 *And if you are unsure why, please scroll back [up](#settings-json).*
 
-## How It Works
+# How It Works
 This is a general explanation for the processes and thoughts behind each file in the program.
 *More can be found in the comments of the program.*
 #### Internal.py
@@ -98,7 +99,8 @@ This is a general explanation for the processes and thoughts behind each file in
 #### Job.py
 > 
 
-## TODO
+# TODO
 #### What's Next?
-So you've made it this far and want to know what's next.
-> Truth be told... I don't know either.
+
+### Contact
+

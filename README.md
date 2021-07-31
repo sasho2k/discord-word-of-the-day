@@ -20,12 +20,12 @@ Word of the Day is a discord.py bot that I originally wrote for fun. I wanted to
 *I would like to first and formally thank Wordnik for their services, their easy-to-use link system to navigate archives, and for not cluttering the HTML with random tags and links.*
 
 This is an example of what a standard message from the bot would be like on a daily basis.
-- 'Word of the Day' followed by the current date.
-- Actual *word of the day* pulled from [wordnik](https://www.wordnik.com/word-of-the-day/).
-- *Numbered collection of definitions* along with their respective part of speech.
-- *Numbered collection of examples* along with their respective sources and links.
-  - Links provided formatted to save space at the bottom of the message.
-- *Link to webpage* that was scraped to retrieve the information along with a shout-out to Wordnik.
+> - 'Word of the Day' followed by the current date.
+> - Actual *word of the day* pulled from [wordnik](https://www.wordnik.com/word-of-the-day/).
+> - *Numbered collection of definitions* along with their respective part of speech.
+> - *Numbered collection of examples* along with their respective sources and links.
+>   - Links provided formatted to save space at the bottom of the message.
+> - *Link to webpage* that was scraped to retrieve the information along with a shout-out to Wordnik.
 
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg"/>
 

@@ -6,6 +6,8 @@ Word of the Day is a discord.py bot that I originally wrote for fun.
 I wanted to learn the advanced side of py with classes and states, while also working with the discord library, to create something I would actually use.
 Along the way, I decided it would be good to share it.
 
+<img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg">
+
 ## Interesting stuff?
 
 -[How It Works](#how-it-works)

@@ -1,4 +1,4 @@
-# Word Of The Day ReadME! [DISCORD.PY]
+# Word Of The Day ReadME!
 *Welcome to my Word Of The Day Bot ReadME, written in Python for Discord. [DISCORD.PY](https://github.com/Rapptz/discord.py)*
 
 *Directly below is a quickstart to setting up and running the bot. [QUICKSTART](#quickstart)*

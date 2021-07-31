@@ -24,7 +24,7 @@ Getting the bot running is fairly simple. It just requires you to have python an
 
 <img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
 
-### Settings.json
+### Settings JSON
 The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
 This is what your settings.json should look like when you are preparing to run the bot.
@@ -67,7 +67,7 @@ Or something like this.
 }
 ```
 
-*And if you are unsure why, please scroll back [up](#settings.json).*
+*And if you are unsure why, please scroll back [up](#settings-json).*
 
 # Contents
 

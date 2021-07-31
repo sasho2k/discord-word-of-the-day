@@ -3,7 +3,7 @@
 
 *Directly below is a quickstart to setting up and running the bot. [GETTING STARTED](#getting-started)*
 
-*Under that is all the technical info. [TECH INFO](#contents)*
+*Under that is all the technical info. [TECH INFO/CONTENTS](#contents)*
 
 <img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 
@@ -18,34 +18,17 @@ Along the way, I decided it would be good to share it.
 *Sound interesting? More information below.*
 
 # Getting Started
-Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working! 
+Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!
 
-
+*A simple test-run of the program!*
 <img src="https://i.ibb.co/2skJCpy/Capture.jpg"/>
 
-
-# Contents
-
-- [How It Works](#how-it-works)
-- [How To Launch](#how-to-launch)
-- [TODO](#todo)
-
-## How It Works
-#### Internal.py
-> - Internal works to check the settings file that is required for the bot.
-> - If there are any errors with the settings file, we need to inform our user and quit running. 
-> - Specifically, we check the file for ['time'], ['channels'], and ['token'] values. If we're missing those or they aren't formatted right, quit.
-#### Client.py
-> - 
-
-
-## How To Launch
-#### Settings.json
+### Settings.json
 This is what your settings.json should look like.
 ```
 {
   "token": "your_token!",
-  "channels": "12345,2131,421421",
+  "channels": ["12345","2131","421421"],
   "time": "12:00"
 }
 ```
@@ -57,7 +40,37 @@ Or something like this.
   "time": "09:05"
 }
 ```
-**ANYTHING ELSE WILL NOT WORK!**
+
+**THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
+```
+{
+  "token": "your_token!",
+  "channels": [12345,2131,421421],
+  "time": "9"
+}
+```
+
+```
+{
+  "token": "your_other_token!",
+  "channels": "12345",
+  "time": ":05"
+}
+```
+
+
+# Contents
+
+- [How It Works](#how-it-works)
+- [TODO](#todo)
+
+## How It Works
+#### Internal.py
+> - Internal works to check the settings file that is required for the bot.
+> - If there are any errors with the settings file, we need to inform our user and quit running. 
+> - Specifically, we check the file for ['time'], ['channels'], and ['token'] values. If we're missing those or they aren't formatted right, quit.
+#### Client.py
+> - 
 
 ## TODO
 #### What's Next?

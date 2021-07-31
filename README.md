@@ -3,7 +3,7 @@
 
 *Directly below is a quickstart to setting up and running the bot. [QUICKSTART](#quickstart)*
 
-*Under that is all the technical info. [TECH INFO](#how-it-works)*
+*Under that is all the technical info. [TECH INFO](#contents)*
 
 <img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 

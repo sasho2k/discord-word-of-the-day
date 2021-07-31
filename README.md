@@ -8,7 +8,7 @@
 <img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 
 # Quickstart
-To run the bot. Do this.
+To get the bot up and running in minimal time is no hassle at all. Simply run it like you would any other python file.
 
 ## About This
 

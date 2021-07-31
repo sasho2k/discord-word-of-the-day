@@ -10,7 +10,7 @@
 # Quickstart
 To get the bot up and running in minimal time is no hassle at all. Simply run it like you would any other python file.
 
-## About This
+# About This
 
 Word of the Day is a discord.py bot that I originally wrote for fun. 
 I wanted to learn the advanced side of py with classes and states, while also working with the discord library, to create something I would actually use.
@@ -20,7 +20,7 @@ Along the way, I decided it would be good to share it.
 
 *Sound interesting? More information below.*
 
-## Contents
+# Contents
 
 - [How It Works](#how-it-works)
 - [How To Launch](#how-to-launch)

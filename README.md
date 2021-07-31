@@ -14,9 +14,9 @@ Along the way, I decided it would be good to share it.
 
 ## Contents
 
--[How It Works](#how-it-works)
--[How To Launch](#how-to-launch)
--[TODO](#todo)
+- [How It Works](#how-it-works)
+- [How To Launch](#how-to-launch)
+- [TODO](#todo)
 
 ## How It Works
 #### Internal

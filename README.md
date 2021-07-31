@@ -9,7 +9,7 @@
 
 # Contents
 
-- [About This Project]
+- [About This Project](#about-this-project)
 - [Getting Started](#getting-started)
 - [Settings JSON](#settings-json)
 - [How It Works](#how-it-works)

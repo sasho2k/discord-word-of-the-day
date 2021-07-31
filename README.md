@@ -24,6 +24,9 @@ Along the way, I decided it would be good to share it.
 *Sound interesting? More information below.*
 
 # Getting Started
+
+<img src="https://media2.giphy.com/media/S8ToH7Zt8gZ4u2iClh/giphy.gif?cid=790b7611c6abe40f441eaae2e8ecde692aefbe4a433ecb0e&rid=giphy.gif&ct=g" width="400" height="400">
+
 Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!.
 
 *A simple test-run of the program!*

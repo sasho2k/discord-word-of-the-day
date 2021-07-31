@@ -5,7 +5,7 @@
 
 *Under that is all the technical info. [TECH INFO](#how-it-works)*
 
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fteacher&psig=AOvVaw2xpRqd7AlAXtPTb0EeHUff&ust=1627795282589000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKC0g5DIjPICFQAAAAAdAAAAABAc" width="600" height="500"/>
+<img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 
 # Quickstart
 To run the bot. Do this.

@@ -15,7 +15,7 @@ Along the way, I decided it would be good to share it.
 ## How It Works
 #### Internal
 The internals grab settings info.
-### Client
+#### Client
 Init the client.
 
 

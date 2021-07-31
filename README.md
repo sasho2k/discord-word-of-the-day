@@ -70,11 +70,11 @@ Or something like this.
 
 > These are the **Rules** for how the file should be structured.
 > - All keys must be in lowercase.
->   - e.g... 'token', 'channels', 'time' and not 'Token', 'TIME', or 'ChAnNeLs'.
-> - 'token' field must be a string value. *Preferably containing the token field so we can login.*
-> - 'channels' field can be a list or a single int.
+>   - e.g... `token`, `channels`, `time` and not `Token`, `TIME`, or `ChAnNeLs`.
+> - `token` field must be a string value. *Preferably containing the token field so we can login.*
+> - `channels` field can be a list or a single int.
 >   - If of type list, then it must be structured like ['123','456','789'].
-> - 'time' field **MUST** be a string of format "HH:MM".
+> - `time` field **MUST** be a string of format "HH:MM".
 
 **THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
 ```
@@ -93,12 +93,22 @@ This is a general explanation for the processes and thoughts behind each file in
 #### Internal.py
 > Internal works to check the settings file that is required for the bot.
 >
-> If there are any errors with the settings file, such as missing or unformatted values, we need to inform our user and quit running. 
+> If there are any errors with the settings file, such as missing or unformatted values, we need to inform our user and quit running. The same is true if the file is missing. 
 >
-> Specifically, we check the file for ['time'], ['channels'], and ['token'] values.
-> 
+> We check the file specifically for the ['time'], ['channels'], and ['token'] values. 
+>
+> We can then return the values in our [client file](#client.py) and setup an instance with the settings.
+
 #### Client.py
+> Client holds all the functions and classes that help the bot work at a server level without crashing on errors. 
+>
+> Specifically, client will hold the MyClient class. The class is initialized after a run through [internal](#internal.py) and has its variables set to the settings.
+> These variables would be `today_date`, `desired_time`, `daily_sent`, and `desired_channel`.
+>
+> `Today_date` is set automatically when the bot is ran, there is no setting this variable. 
+> The same will go for `daily_sent`, and this is because these two variables work to help the bot know when to send off a daily message.
 > 
+> On the ready of the bot, we can launch our two tasks *check_date* and *grab_daily_word*
 #### Job.py
 > 
 

@@ -15,6 +15,7 @@ def get_settings():
 
     with open('settings.json') as f:
         json_data = json.load(f)
+    f.close()
 
     token = check_token(json_data)
     channels = check_channels(json_data)
@@ -75,24 +76,32 @@ def check_channels(json_data):
             print("FATAL: Empty channel value.")
             return None
 
-        channels = []
-        _channels = str(json_data.get('channels')).split(",")
-        for channel in _channels:
-            try:
-                if channel == "":
-                    print("FATAL: Invalid string in 'channel' json.")
+        if isinstance(json_data.get('channels'), list):
+            channels = json_data.get('channels')
+            _channels = []
+            for channel in channels:
+                try:
+                    if channel == "":
+                        print("FATAL: Invalid string in 'channel' json.")
+                        return None
+                    else:
+                        _channels.append(int(channel))
+                except:
+                    print("FATAL: Invalid value in 'channel' json.")
                     return None
-                else:
-                    channels.append(int(channel))
+            if len(channels) > 1:
+                print("Channels:", channels)
+                return channels
+            else:
+                return None
+        elif isinstance(json_data.get('channels'), str):
+            try:
+                channel = int(json_data.get('channels'))
+                print("Channel:", channel)
+                return channel
             except:
                 print("FATAL: Invalid value in 'channel' json.")
                 return None
-
-        print("Channels:", channels)
-        if len(channels) > 1:
-            return channels
-        else:
-            return channels[0]
     else:
         print("FATAL: Missing channel value from settings.json.")
         return None

@@ -7,7 +7,15 @@
 
 <img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 
-# About This
+# Contents
+
+- [About This Project]
+- [Getting Started](#getting-started)
+- [Settings JSON](#settings-json)
+- [How It Works](#how-it-works)
+- [TODO](#todo)
+
+# About This Project
 
 Word of the Day is a discord.py bot that I originally wrote for fun. 
 I wanted to learn the advanced side of py with classes and states, while also working with the discord library, to create something I would actually use.
@@ -68,11 +76,6 @@ Or something like this.
 ```
 
 *And if you are unsure why, please scroll back [up](#settings-json).*
-
-# Contents
-
-- [How It Works](#how-it-works)
-- [TODO](#todo)
 
 ## How It Works
 #### Internal.py

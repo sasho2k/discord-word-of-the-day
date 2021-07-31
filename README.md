@@ -13,7 +13,7 @@ Word of the Day is a discord.py bot that I originally wrote for fun.
 I wanted to learn the advanced side of py with classes and states, while also working with the discord library, to create something I would actually use.
 Along the way, I decided it would be good to share it.
 
-<img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg">
+<img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg"/>
 
 *Sound interesting? More information below.*
 
@@ -21,7 +21,7 @@ Along the way, I decided it would be good to share it.
 Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!
 
 *A simple test-run of the program!*
-<img src="https://i.ibb.co/2skJCpy/Capture.jpg" align="center"/>
+<img src="https://i.ibb.co/2skJCpy/Capture.jpg"/>
 
 ### Settings.json
 This is what your settings.json should look like.

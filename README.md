@@ -46,9 +46,9 @@ Or something like this.
 ```
 
 **Key's and their Designated Values**
-- `Token`:*Holds the token associated with your bot's login.*
-- `Channels`:*Can hold either a list of channels or a single channel.*
-- `Time`:*Holds a military-standard time.*
+- `Token` *Holds the token associated with your bot's login.*
+- `Channels` *Can hold either a list of channels or a single channel.*
+- `Time` *Holds a military-standard time.*
 
 > These are the **Rules** for how the file should be structured.
 > - All keys must be in lowercase.

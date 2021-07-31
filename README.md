@@ -13,18 +13,18 @@ Along the way, I decided it would be good to share it.
 -[TODO](#todo)
 
 ## How It Works
-### Internal
+#### Internal
 The internals grab settings info.
 ### Client
 Init the client.
 
 
 ## How To Launch
-### Settings.json
+#### Settings.json
 This is what your settings.json should look like.
 
 
 ## TODO
-### What's Next?
+#### What's Next?
 So you've made it this far and want to know what's next.
 > Truth be told... I don't know either.

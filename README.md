@@ -10,7 +10,9 @@ Along the way, I decided it would be good to share it.
 
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg">
 
-## Interesting stuff?
+*Sound Interesting?*
+
+## Contents
 
 -[How It Works](#how-it-works)
 -[How To Launch](#how-to-launch)

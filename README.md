@@ -4,7 +4,8 @@
 *Directly below is a quickstart to setting up and running the bot. [QUICKSTART](#quickstart)*
 
 *Under that is all the technical info. [TECH INFO](#how-it-works)*
-<img src="https://play-lh.googleusercontent.com/BYoyK1fiFfpH8JTutWAlG_Tqo-Ati-7tLcdYijU-8_L7SQxpuYBo7tzxrzDGXk8JC4hv" width="250" height="250"/>
+
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fteacher&psig=AOvVaw2xpRqd7AlAXtPTb0EeHUff&ust=1627795282589000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCKC0g5DIjPICFQAAAAAdAAAAABAc" width="600" height="500"/>
 
 # Quickstart
 To run the bot. Do this.

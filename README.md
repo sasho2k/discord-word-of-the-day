@@ -20,7 +20,7 @@ Along the way, I decided it would be good to share it.
 # Getting Started
 Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!
 
-<img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="400" height="400"/>
+<img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
 
 ### Settings.json
 This is what your settings.json should look like.

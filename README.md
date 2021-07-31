@@ -9,8 +9,8 @@ Along the way, I decided it would be good to share it.
 ## Interesting stuff?
 
 -[How It Works](#how-it-works)
--[How To Launch](#)
--[TODO](#)
+-[How To Launch](#how-to-launch)
+-[TODO](#todo)
 
 ## How It Works
 ### Internal
@@ -19,37 +19,9 @@ The internals grab settings info.
 Init the client.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## How To Launch
 ### Settings.json
 This is what your settings.json should look like.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## TODO

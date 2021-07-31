@@ -10,7 +10,7 @@ Along the way, I decided it would be good to share it.
 
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg">
 
-*Sound Interesting?*
+*Sound interesting? Below is all the boring technical info.*
 
 ## Contents
 

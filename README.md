@@ -13,19 +13,22 @@ Word of the Day is a discord.py bot that I originally wrote for fun.
 I wanted to learn the advanced side of py with classes and states, while also working with the discord library, to create something I would actually use.
 Along the way, I decided it would be good to share it.
 
-*A simple test-run of the program!*
-
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg"/>
 
 *Sound interesting? More information below.*
 
 # Getting Started
-Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!
+Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!.
+
+*A simple test-run of the program!*
 
 <img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
 
 ### Settings.json
-This is what your settings.json should look like.
+The settings file is where your bot will hold its sensitive info upon launch.
+It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
+This is what your settings.json should look like when you are preparing to run the bot.
+
 ```
 {
   "token": "your_token!",
@@ -42,23 +45,29 @@ Or something like this.
 }
 ```
 
+**Key's and their Designated Values**
+- `Token:` *Holds the token associated with your bot's login.*
+- `Channels:` *Can hold either a list of channels or a single channel.*
+- `Time:` *Holds a military-standard time.*
+
+> These are the **Rules** for how to the file should be structured.
+> - All keys must be in lowercase.
+>   - e.g... 'token', 'channels', 'time' and not 'Token', 'TIME', or 'ChAnNeLs'.
+> - 'token' field must be a string value. *Preferably containing the token field so we can login.*
+> - 'channels' field can be a list or a single int.
+>   - If of type list, then it must be structured like ['123','456','789'].
+> - 'time' field **MUST** be a string of format "HH:MM".
+
 **THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
 ```
 {
-  "token": "your_token!",
+  "Token": "your_token!",
   "channels": [12345,2131,421421],
-  "time": "9"
+  "TIME": "9"
 }
 ```
 
-```
-{
-  "token": "your_other_token!",
-  "channels": "12345",
-  "time": ":05"
-}
-```
-
+*And if you are unsure why, please scroll back [up](#settings.json).*
 
 # Contents
 

@@ -92,7 +92,9 @@ This is a general explanation for the processes and thoughts behind each file in
 *More can be found in the comments of the program.*
 #### Internal.py
 > Internal works to check the settings file that is required for the bot.
+
 > If there are any errors with the settings file, we need to inform our user and quit running. 
+
 > Specifically, we check the file for ['time'], ['channels'], and ['token'] values. If we're missing those or they aren't formatted right, quit.
 #### Client.py
 > 

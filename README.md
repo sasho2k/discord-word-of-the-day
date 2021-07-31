@@ -1,9 +1,6 @@
 # Word Of The Day ReadME!
 *Welcome to the ReadME of Word Of The Day Bot, written in Python for Discord. [DISCORD.PY](https://github.com/Rapptz/discord.py)*
-
 *Directly below is a quickstart to setting up and running the bot. [GETTING STARTED](#getting-started)*
-
-*Under that is all the technical info. [TECH INFO/CONTENTS](#contents)*
 
 <img src="https://media2.giphy.com/media/vVKqa0NMZzFyE/giphy.gif?cid=790b761145fb57b33ee127555d360554d76c141ee1961ff9&rid=giphy.gif&ct=g" width="600" height="500"/>
 

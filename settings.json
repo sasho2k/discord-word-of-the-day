@@ -1,0 +1,5 @@
+{
+  "token": "discord_token",
+  "channels": ["channel_1_id", "channel_2_id"],
+  "time": "HH:MM"
+}

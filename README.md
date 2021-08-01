@@ -1,13 +1,13 @@
 # Word Of The Day
-*Welcome to the ReadME of Word Of The Day Bot, written in Python for Discord. [DISCORD.PY](https://github.com/Rapptz/discord.py)*
+*Welcome to the ReadME of Word Of The Day Bot, written in Python for Discord using [discord.py](https://github.com/Rapptz/discord.py)!*
 
-*Directly below is a quickstart to setting up and running the bot. [GETTING STARTED](#getting-started)*
+*Directly below is a quickstart to setting up and running the bot. Start here unless you want to find out some more about the project.*
+*[Get Started!](#getting-started)*
 
 <img src="https://i.giphy.com/media/3orifg4eeMqIhe66uk/200.webp" width="600" height="500"/>
 
 # Contents
 
-- [About This Project](#about-this-project)
 - [Getting Started](#getting-started)
 - [Settings JSON](#settings-json)
 - [How It Works](#how-it-works)
@@ -37,9 +37,24 @@ This is an example of what a standard message from the bot would be like on a da
 
 <img src="https://media2.giphy.com/media/S8ToH7Zt8gZ4u2iClh/giphy.gif?cid=790b7611c6abe40f441eaae2e8ecde692aefbe4a433ecb0e&rid=giphy.gif&ct=g" width="400" height="400">
 
-Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your machine. From there, you can clone/download the repository and get your own version working!.
+Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working!.
 
-*A simple test-run of the program!*
+> To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, and a desired time to send your word of the day. *You probably would also want to look at the [settings json](#settings-json) section of the readME.*
+> 
+> If you aren't sure where to get a token for your bot from, please see [this](https://discord.com/developers).
+> You will be prompted to login into Discord and setup an application. Please feel free to look around [here](https://discord.com/developers/docs/intro) if you are unfamiliar with any of this.
+> 
+> Also, you can grab channel ID's by right-clicking over a Discord channel and copying it's ID. *(Be mindful you must have developer mode turned on in Discord.)*
+
+AFter you've setup your application on the Discord Developer side, you'll want to generate an invite for your bot.
+I would recommend using [this](https://discordapi.com/permissions.html) site to do so, and setting the permissions to admin. 
+
+> **NOTE**:*You can set your specific permissions if you would like but I am very lazy. Sorry.*
+
+Once the bot is in the Discord server, you can run the main file from your local environment, or via a server, to launch the bot.
+*This might not be a 100% step by step explanation so feel free to google your way around some things. Otherwise, you should be good to go after these steps.*
+
+#### *A simple test-run of the program!*
 
 <img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
 
@@ -126,7 +141,8 @@ This is a general explanation for the processes and thoughts behind each file in
 # TODO
 **Current TODO List.**
 ```
-... 
+... -> Add ability to grab requested word from chat 
+... -> Add ability to set desired time from 
 ```
 #### What's Next?
 

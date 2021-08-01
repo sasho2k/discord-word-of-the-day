@@ -3,9 +3,7 @@
   "channels": ["12345","2131","421421"],
   "time": "12:00"
 }
-
 or
-
 {
   "token": "your_other_token!",
   "channels": "12345",

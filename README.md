@@ -69,6 +69,7 @@ And there you go! You've got a bot that will grab the word of the day and send i
 # Settings JSON
 The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
+
 This is what your settings.json should look like when you are preparing to run the bot.
 
 ```JSON

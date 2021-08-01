@@ -68,7 +68,7 @@ And there you go! You've got a bot that will grab the word of the day and send i
 The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
 This is what your settings.json should look like when you are preparing to run the bot.
-
+[Settings.json](https://github.com/sasho2k/discord-word-of-the-day/blob/master/settings.json)
 ```JSON
 {
   "token": "your_token!",
@@ -77,6 +77,7 @@ This is what your settings.json should look like when you are preparing to run t
 }
 ```
 Or something like this.
+[Other Settings.json](https://github.com/sasho2k/discord-word-of-the-day/blob/master/settings_other.json)
 ```JSON
 {
   "token": "your_other_token!",

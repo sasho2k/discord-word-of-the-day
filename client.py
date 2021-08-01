@@ -44,30 +44,36 @@ class MyClient(discord.Client):
                 await self.send_word()
                 self.daily_sent = True
 
-    # Grab our message from helper function
+    # Grab our message from helper function then check if we must send to a list of channels or a single one. Depending
+    # on the type, we have to loop through the list, but the process in each loop is the same as a single instance;
+    # Grab the channel, check if it is empty, if not then check if we must send a single message or multiple, then send!
     async def send_word(self):
         msg = wotd_flow()
 
         if isinstance(self.desired_channels, int):
             channel = self.get_channel(self.desired_channels)
             if not channel:
-                print("FATAL: No channel found with ID in settings.\n")
+                print("FATAL: No channel found with ID {0} in settings.\n".format(channel))
                 return
             if isinstance(msg, list):
                 for message in msg:
+                    print("CLIENT : Message sent to channel {0}.\n".format(channel))
                     await channel.send(message)
             else:
+                print("CLIENT : Message sent to channel {0}.\n".format(channel))
                 await channel.send(msg)
         elif isinstance(self.desired_channels, list):
             for _channel in self.desired_channels:
                 channel = self.get_channel(_channel)
                 if not channel:
-                    print("FATAL: No channel found with ID in settings.\n")
-                    return
+                    print("FATAL: No channel found with ID {0} in settings.\n".format(channel))
+                    continue
                 if isinstance(msg, list):
                     for message in msg:
+                        print("CLIENT : Message sent to channel {0}.\n".format(channel))
                         await channel.send(message)
                 else:
+                    print("CLIENT : Message sent to channel {0}.\n".format(channel))
                     await channel.send(msg)
         print('CLIENT: send_word complete.\n')
 
@@ -100,7 +106,6 @@ def wotd_flow():
     elif isinstance(wotd, WordOfTheDay):
         msg = handle_and_send(wotd)
         if not msg:
-            print("[ERROR] : MESSAGE LONGER THAN 4000.")
             msg = "`ERROR -> LENGTH/METHOD ISSUE`"
 
     return msg
@@ -114,12 +119,11 @@ def run():
     client = MyClient()
     token, channels, time = get_settings()
     client.desired_channels = channels
-    client.desired_time = time
-    # datetime.now().strftime("%H:%M")
+    client.desired_time = datetime.now().strftime("%H:%M") # time
     client.today_date = datetime.now().strftime("%d")
 
     try:
-        print("\nCLIENT: Starting run process.\n")
+        print("CLIENT: Starting run process.\n")
         client.run(token)
     except discord.errors.HTTPException:
         print("FATAL: Invalid token.\n")

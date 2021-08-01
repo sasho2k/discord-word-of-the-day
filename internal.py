@@ -90,8 +90,8 @@ def check_channels(json_data):
                     print("FATAL: Invalid value in 'channel' json.")
                     return None
             if len(channels) > 1:
-                print("Channels:", channels)
-                return channels
+                print("Channels:", _channels)
+                return _channels
             else:
                 return None
         elif isinstance(json_data.get('channels'), str):

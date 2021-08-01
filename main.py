@@ -5,6 +5,7 @@ from client import *
 if __name__ == '__main__':
     run()
 
+# A test run to see if there will ever be errors with the formatting in which we would need to handle for longer messages.
 """
     date = ['2019', '1', '6']
     msg = wotd_flow(date)

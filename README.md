@@ -56,7 +56,7 @@ Once the bot is in the Discord server, you can run the main file from your local
 
 And there you go! You've got a bot that will grab the word of the day and send it to channels of your choice.
 
-> NOTE: I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.
+> **NOTE**: I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.
 
 *If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#to-do) section and also ***star** the repository!*
 

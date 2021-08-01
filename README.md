@@ -37,7 +37,7 @@ This is an example of what a standard message from the bot would be like on a da
 
 <img src="https://media2.giphy.com/media/S8ToH7Zt8gZ4u2iClh/giphy.gif?cid=790b7611c6abe40f441eaae2e8ecde692aefbe4a433ecb0e&rid=giphy.gif&ct=g" width="400" height="400">
 
-Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working!.
+Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working!
 
 > To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, and a desired time to send your word of the day. *You probably would also want to look at the [settings json](#settings-json) section of the readME.*
 > 
@@ -46,13 +46,19 @@ Getting the bot running is fairly simple. It just requires you to have python an
 > 
 > Also, you can grab channel ID's by right-clicking over a Discord channel and copying it's ID. *(Be mindful you must have developer mode turned on in Discord.)*
 
-AFter you've setup your application on the Discord Developer side, you'll want to generate an invite for your bot.
+After you've setup your application on the Discord Developer side, you'll want to generate an invite for your bot.
 I would recommend using [this](https://discordapi.com/permissions.html) site to do so, and setting the permissions to admin. 
 
 > **NOTE**:*You can set your specific permissions if you would like but I am very lazy. Sorry.*
 
 Once the bot is in the Discord server, you can run the main file from your local environment, or via a server, to launch the bot.
 *This might not be a 100% step by step explanation so feel free to google your way around some things. Otherwise, you should be good to go after these steps.*
+
+And there you go! You've got a bot that will grab the word of the day and send it to channels of your choice.
+
+> NOTE: I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.
+
+*If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#to-do) section and also ***star** the repository!*
 
 #### *A simple test-run of the program!*
 
@@ -80,9 +86,9 @@ Or something like this.
 ```
 
 **Key's and their Designated Values**
-- `Token` *Holds the token associated with your bot's login.*
-- `Channels` *Can hold either a list of channels or a single channel.*
-- `Time` *Holds a military-standard time.*
+- `Token` - *Holds the token associated with your bot's login.*
+- `Channels` - *Can hold either a list of channels or a single channel.*
+- `Time` - *Holds a military-standard time.*
 
 > These are the **Rules** for how the file should be structured.
 > - All keys must be in lowercase.
@@ -128,7 +134,7 @@ This is a general explanation for the processes and thoughts behind each file in
 #### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/job.py)
 > Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
 >
-> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a word_of_the_day object (Also declared here in job.py).
+> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a word_of_the_day object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. In the future, users will be able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
 >
 > *Error codes*
 > - 200 =  Did not receive 200 response from request.
@@ -136,17 +142,22 @@ This is a general explanation for the processes and thoughts behind each file in
 > - 202 =  Did not find the 'Definition' and 'Part Of Speech' section/s of Word Of The Day
 >
 > `handle_and_send()` serves to build the message/messages we want to return to our client to send. Sometimes the length of a message is greater than 2000, which is the standard length for discord, so we must split the message in a way that is visually appealing. That is where the handle_long_message function will come in and will return us a list of messages to send.
+>
 > *Very rarely, there is an error where it will return None because we have ran into a message with a length greater than 4000, or two messages. This is honestly because I got lazy and just limited the number of examples to be 5.*
  
 # TODO
 **Current TODO List.**
 ```
-... -> Add ability to grab requested word from chat 
-... -> Add ability to set desired time from 
+... -> Add ability to grab requested archive word from chat.
+... -> Add ability to set desired time from chat.
+... -> Add ability to set sending channels.
+... -> Add ability to sign users up for DMs at a specific time. *NOTE : This may require the elimination of various linear searches in the code*
+... -> Add ability to send a dynamic and visually appealing message that is over 4000 characters long.
 ```
-#### What's Next?
 
-
-### Contact
+# Contact
 > If you run into any issues, have any questions, or just want to chat. 
 > Discord: `sasho2k#1600`
+
+##### So What Now?
+> No clue. Thanks for getting this far though.

@@ -21,12 +21,13 @@ Word of the Day is a discord.py bot that I originally wrote for fun. I wanted to
 *I would like to first and formally thank Wordnik for their services, their easy-to-use link system to navigate archives, and for not cluttering the HTML with random tags and links.*
 
 This is an example of what a standard message from the bot would be like on a daily basis.
-> - 'Word of the Day' followed by the current date.
-> - Actual *word of the day* pulled from [wordnik](https://www.wordnik.com/word-of-the-day/).
-> - *Numbered collection of definitions* along with their respective part of speech.
-> - *Numbered collection of examples* along with their respective sources and links.
+> - `Word of the Day` followed by the current date.
+> - Actual `word of the day` pulled from [wordnik](https://www.wordnik.com/word-of-the-day/).
+> - `Numbered collection of definitions` along with their respective part of speech.
+> - `Numbered collection of examples` along with their respective sources and links.
+>   - Sometimes there will be no examples. This is not an issue with the bot but with the site not having any examples available.
 >   - Links provided formatted to save space at the bottom of the message.
-> - *Link to webpage* that was scraped to retrieve the information along with a shout-out to Wordnik.
+> - `Link to webpage` that was scraped to retrieve the information along with a shout-out to Wordnik.
 
 <img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg"/>
 
@@ -47,7 +48,7 @@ The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
 This is what your settings.json should look like when you are preparing to run the bot.
 
-```
+```JSON
 {
   "token": "your_token!",
   "channels": ["12345","2131","421421"],
@@ -55,7 +56,7 @@ This is what your settings.json should look like when you are preparing to run t
 }
 ```
 Or something like this.
-```
+```JSON
 {
   "token": "your_other_token!",
   "channels": "12345",
@@ -77,7 +78,7 @@ Or something like this.
 > - `time` field **MUST** be a string of format "HH:MM".
 
 **THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
-```
+```JSON
 {
   "Token": "your_token!",
   "channels": [12345,2131,421421],
@@ -90,30 +91,46 @@ Or something like this.
 # How It Works
 This is a general explanation for the processes and thoughts behind each file in the program.
 *More can be found in the comments of the program.*
-#### Internal.py
+#### [Internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internal.py)
 > Internal works to check the settings file that is required for the bot.
 >
 > If there are any errors with the settings file, such as missing or unformatted values, we need to inform our user and quit running. The same is true if the file is missing. 
 >
 > We check the file specifically for the ['time'], ['channels'], and ['token'] values. 
 >
-> We can then return the values in our [client file](#client.py) and setup an instance with the settings.
+> We can then return the values to our client and setup an instance with the settings.
 
-#### Client.py
+#### [Client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/client.py)
 > Client holds all the functions and classes that help the bot work at a server level without crashing on errors. 
 >
-> Specifically, client will hold the MyClient class. The class is initialized after a run through [internal](#internal.py) and has its variables set to the settings.
+> Specifically, client will hold the MyClient class. The class is initialized after a run through internal and has its variables set to the settings.
 > These variables would be `today_date`, `desired_time`, `daily_sent`, and `desired_channel`.
 >
 > `Today_date` is set automatically when the bot is ran, there is no setting this variable. 
 > The same will go for `daily_sent`, and this is because these two variables work to help the bot know when to send off a daily message.
 > 
-> On the ready of the bot, we can launch our two tasks *check_date* and *grab_daily_word*
-#### Job.py
-> 
-
+> On the ready of the bot, we can launch our two tasks `check_date()` and `grab_daily_word()`. `check_date()` will work to loop every 30 minutes to check the current date versus the date saved in the Client class, and will let us know if today is a new day by setting `daily_sent` to false. `grab_daily_word()` will check every 15 seconds if the `daily_sent` has is false **AND** if the time is equal to the `desired_time`, and if both are true, we can send our message across our channels.
+#### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/job.py)
+> Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
+>
+> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a word_of_the_day object (Also declared here in job.py).
+>
+> *Error codes*
+> - 200 =  Did not receive 200 response from request.
+> - 201 =  Did not find the 'Word' section of Word Of The Day.
+> - 202 =  Did not find the 'Definition' and 'Part Of Speech' section/s of Word Of The Day
+>
+> `handle_and_send()` serves to build the message/messages we want to return to our client to send. Sometimes the length of a message is greater than 2000, which is the standard length for discord, so we must split the message in a way that is visually appealing. That is where the handle_long_message function will come in and will return us a list of messages to send.
+> *Very rarely, there is an error where it will return None because we have ran into a message with a length greater than 4000, or two messages. This is honestly because I got lazy and just limited the number of examples to be 5.*
+ 
 # TODO
+**Current TODO List.**
+```
+... 
+```
 #### What's Next?
 
-### Contact
 
+### Contact
+> If you run into any issues, have any questions, or just want to chat. 
+> Discord: `sasho2k#1600`

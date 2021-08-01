@@ -49,14 +49,14 @@ Getting the bot running is fairly simple. It just requires you to have python an
 After you've setup your application on the Discord Developer side, you'll want to generate an invite for your bot.
 I would recommend using [this](https://discordapi.com/permissions.html) site to do so, and setting the permissions to admin. 
 
-> **NOTE**:*You can set your specific permissions if you would like but I am very lazy. Sorry.*
+> **NOTE**: *You can set your specific permissions if you would like but I am very lazy. Sorry.*
 
 Once the bot is in the Discord server, you can run the main file from your local environment, or via a server, to launch the bot.
 *This might not be a 100% step by step explanation so feel free to google your way around some things. Otherwise, you should be good to go after these steps.*
 
 And there you go! You've got a bot that will grab the word of the day and send it to channels of your choice.
 
-> **NOTE**: I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.
+> **NOTE**: *I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.*
 
 *If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#to-do) section and also ***star** the repository!*
 

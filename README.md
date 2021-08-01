@@ -151,7 +151,8 @@ This is a general explanation for the processes and thoughts behind each file in
 ... -> Add ability to grab requested archive word from chat.
 ... -> Add ability to set desired time from chat.
 ... -> Add ability to set sending channels.
-... -> Add ability to sign users up for DMs at a specific time. *NOTE : This may require the elimination of various linear searches in the code*
+... -> Add ability to sign users up for DMs at a specific time. 
+       *NOTE : This may require the elimination of various linear searches in the code*
 ... -> Add ability to send a dynamic and visually appealing message that is over 4000 characters long.
 ```
 

@@ -4,6 +4,8 @@
 *Directly below is a quickstart to setting up and running the bot. Start here unless you want to find out some more about the project.*
 *[Get Started!](#getting-started)*
 
+**Please note this is a work in progress and there might be errors. Feel free to reach out to me if you find any issues.**
+
 <img src="https://i.giphy.com/media/3orifg4eeMqIhe66uk/200.webp" width="600" height="500"/>
 
 # Contents

@@ -39,9 +39,9 @@ This is an example of what a standard message from the bot would be like on a da
 
 <img src="https://media2.giphy.com/media/S8ToH7Zt8gZ4u2iClh/giphy.gif?cid=790b7611c6abe40f441eaae2e8ecde692aefbe4a433ecb0e&rid=giphy.gif&ct=g" width="400" height="400">
 
-Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working!
+Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working! It will also require you to make a `settings.json` file to hold all the info your bot will need. More information can be found at [settings.json](#settings-json).
 
-> To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, and a desired time to send your word of the day. *You probably would also want to look at the [settings json](#settings-json) section of the readME.*
+> To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, and a desired time to send your word of the day.
 > 
 > If you aren't sure where to get a token for your bot from, please see [this](https://discord.com/developers).
 > You will be prompted to login into Discord and setup an application. Please feel free to look around [here](https://discord.com/developers/docs/intro) if you are unfamiliar with any of this.

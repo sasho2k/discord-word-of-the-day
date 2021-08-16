@@ -31,9 +31,13 @@ This is an example of what a standard message from the bot would be like on a da
 >   - Links provided formatted to save space at the bottom of the message.
 > - `Link to webpage` that was scraped to retrieve the information along with a shout-out to Wordnik.
 
-<img src="https://i.ibb.co/CBFBDdm/wotdpic.jpg"/>
+<img src="https://i.ibb.co/R0T6jC6/wordoftheday-JPG.jpg"/>
 
-*Sound interesting? More information below.*
+> **This is what the bot help embed would display upon request.**
+
+<img src="https://i.ibb.co/8cy8F1r/help.jpg" width="700" height="400">
+
+>*Sound interesting? More information below.*
 
 # Getting Started
 
@@ -60,11 +64,11 @@ And there you go! You've got a bot that will grab the word of the day and send i
 
 > **NOTE**: *I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.*
 
-*If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#to-do) section and also **star** the repository!*
+*If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#TODO) section and also **star** the repository!*
 
 #### *A simple test-run of the program!*
 
-<img src="https://i.ibb.co/2skJCpy/Capture.jpg" width="600" height="150"/>
+<img src="https://i.ibb.co/zGpTMp4/running.jpg" width="600" height="150"/>
 
 # Settings JSON
 The settings file is where your bot will hold its sensitive info upon launch.

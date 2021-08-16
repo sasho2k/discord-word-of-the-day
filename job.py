@@ -120,10 +120,7 @@ def handle_and_send(word_of_the_day_Obj):
 
     if date:
         str_build = (
-            "__Word of the Day,{0}/{1}__\n".format(date[1], date[2]))
-    else:
-        str_build = (
-            "__Word of the Day,{0}/{1}__\n".format(datetime.now().strftime("%m"), datetime.now().strftime("%d")))
+            "__Word of the Day, {2}/{0}/{1}__\n".format(date[1], date[2], date[0]))
 
     str_build += ("`{0}`\n\n".format(word))
     str_build += "__**Definitions**__\n"

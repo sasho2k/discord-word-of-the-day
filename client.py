@@ -195,7 +195,7 @@ def run():
     print("\nStarting Process...\n")
     token, channels, bot_time, bot_prefix = get_settings()
     client.desired_channels = channels
-    client.desired_time = bot_time
+    client.desired_time = bot_time #datetime.now().strftime("%H:%M")
     client.today_date = datetime.now().strftime("%d")
     client.bot_prefix = bot_prefix
 

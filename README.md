@@ -76,7 +76,8 @@ This is what your settings.json should look like when you are preparing to run t
 {
   "token": "your_token!",
   "channels": ["12345","2131","421421"],
-  "time": "12:00"
+  "time": "12:00",
+  "bot_prefix": "$"
 }
 ```
 Or something like this.
@@ -85,7 +86,8 @@ Or something like this.
 {
   "token": "your_other_token!",
   "channels": "12345",
-  "time": "09:05"
+  "time": "09:05",
+  "bot_prefix": "-"
 }
 ```
 
@@ -93,6 +95,7 @@ Or something like this.
 - `Token` - *Holds the token associated with your bot's login.*
 - `Channels` - *Can hold either a list of channels or a single channel.*
 - `Time` - *Holds a military-standard time.*
+- `Bot_Prefix` - *Holds the prefix the bot will use.*
 
 > These are the **Rules** for how the file should be structured.
 > - All keys must be in lowercase.
@@ -101,13 +104,15 @@ Or something like this.
 > - `channels` field can be a list or a single int.
 >   - If of type list, then it must be structured like ['123','456','789'].
 > - `time` field **MUST** be a string of format "HH:MM".
+> - `bot_prefix` field must contain some type of character sequence. ('$', '-', '&', '@', '#')
 
 **THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
 ```JSON
 {
   "Token": "your_token!",
   "channels": [12345,2131,421421],
-  "TIME": "9"
+  "TIME": "9",
+  "botprefix": " "
 }
 ```
 
@@ -135,6 +140,8 @@ This is a general explanation for the processes and thoughts behind each file in
 > The same will go for `daily_sent`, and this is because these two variables work to help the bot know when to send off a daily message.
 > 
 > On the ready of the bot, we can launch our two tasks `check_date()` and `grab_daily_word()`. `check_date()` will work to loop every 30 minutes to check the current date versus the date saved in the Client class, and will let us know if today is a new day by setting `daily_sent` to false. `grab_daily_word()` will check every 15 seconds if the `daily_sent` has is false **AND** if the time is equal to the `desired_time`, and if both are true, we can send our message across our channels.
+> 
+> We will also handle for three types of messages coming from the chat: 1. `signup`, 2. `help`, and 3. `getword`. The `BOT_PREFIX` will be the predecessor to all these message types. `signup` will add the user to the bot user DM list to receive DM's at the desired time with the Word of the Day. `help` will hold all info about the available functions. `getword` will be used to access the Word of the Day archive and request previous words.
 #### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/job.py)
 > Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
 >
@@ -152,10 +159,10 @@ This is a general explanation for the processes and thoughts behind each file in
 # TODO
 **Current TODO List.**
 ```
-... -> Add ability to grab requested archive word from chat.
-... -> Add ability to set desired time from chat.
-... -> Add ability to set sending channels.
+... -> Add ability to set desired time from chat [This requires use of roles].
+... -> Add ability to set sending channels [This requires use of roles].
 ... -> Add ability to sign users up for DMs at a specific time. 
+       [This could be a possible memory/time issue if the list is too big, may require searching algorithms]
 ... -> Add ability to send a dynamic and visually appealing message that is over 4000 characters long.
 ```
 
@@ -164,4 +171,4 @@ This is a general explanation for the processes and thoughts behind each file in
 > Discord: `sasho2k#1600`
 
 ##### So What Now?
-> No clue. Thanks for getting this far though.
+> No clue. Thanks for getting this far though. Hopefully you enjoyed reading this and learned a lot.

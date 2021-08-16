@@ -109,8 +109,8 @@ class MyClient(discord.Client):
             embedVar.set_footer(text="If you have more questions, please visit the GitHub hyperlink at the top!")
             embedVar.set_thumbnail(url="https://i.ibb.co/GMbg90n/wotd.png")
             embedVar.add_field(name="{0}signup".format(self.bot_prefix),
-                               value="Use this to sign-up for a DM from the bot at 10:00 am everyday!\n"
-                                     "*This will be customizable soon!*", inline=False)
+                               value="Use this to sign-up for a DM from the bot at {0} everyday!\n"
+                                     "*This will be customizable soon!*".format(self.desired_time), inline=False)
             embedVar.add_field(name="{0}getword YYYY/M/D".format(self.bot_prefix),
                                value="Use this to get an archive word from the day you request!\n"
                                      "The beginning of the archive is 2011/2/14.\n\n"

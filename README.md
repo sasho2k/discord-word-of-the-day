@@ -31,7 +31,7 @@ This is an example of what a standard message from the bot would be like on a da
 >   - Links provided formatted to save space at the bottom of the message.
 > - `Link to webpage` that was scraped to retrieve the information along with a shout-out to Wordnik.
 
-<img src="https://i.ibb.co/R0T6jC6/wordoftheday-JPG.jpg"/>
+<img src="https://i.ibb.co/R0T6jC6/wordoftheday-JPG.jpg" height="800"/>
 
 > **This is what the bot help embed would display upon request.**
 

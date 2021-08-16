@@ -123,6 +123,7 @@ class MyClient(discord.Client):
             for user in self.user_dm_list:
                 if message.author.id == user:
                     print("FATAL : User [id: {0}, name: {1}] is already signed up.".format(user, message.author.name))
+                    message.channel.send("```ERROR -> YOU HAVE ALREADY SIGNED UP```")
                     return
             self.user_dm_list.append(message.author.id)
             user = await self.fetch_user(message.author.id)

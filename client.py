@@ -13,10 +13,12 @@ from job import *
 # This is our client class.
 class MyClient(discord.Client):
     # Set the states on initialization.
+    bot_prefix = ""
     today_date = ""
     daily_sent = False
     desired_time = ""
     desired_channels = []
+    user_dm_list = []
 
     # The simple on-ready function where our tasks will live.
     async def on_ready(self):
@@ -29,7 +31,8 @@ class MyClient(discord.Client):
     @tasks.loop(minutes=30)
     async def check_date(self):
         if datetime.now().strftime("%d") != self.today_date:
-            print('CLIENT: Changing self.today_date from {0} to {1}\n'.format(self.today_date, datetime.now().strftime("%d")))
+            print('CLIENT: Changing self.today_date from {0} to {1}\n'.format(self.today_date,
+                                                                              datetime.now().strftime("%d")))
             self.today_date = datetime.now().strftime("%d")
             if not self.daily_sent:
                 self.daily_sent = False
@@ -48,43 +51,110 @@ class MyClient(discord.Client):
     # on the type, we have to loop through the list, but the process in each loop is the same as a single instance;
     # Grab the channel, check if it is empty, if not then check if we must send a single message or multiple, then send!
     async def send_word(self):
-        msg = wotd_flow()
+        msg = wotd_flow(None)
 
-        if isinstance(self.desired_channels, int):
-            channel = self.get_channel(self.desired_channels)
+        # This will be the flow for sending to desired_channels.
+        for _channel in self.desired_channels:
+            channel = self.get_channel(_channel)
             if not channel:
-                print("FATAL: No channel found with ID {0} in settings.\n".format(channel))
-                return
+                print("FATAL: No channel found with ID {0} in settings.\n".format(_channel))
+                continue
             if isinstance(msg, list):
+                i = 1
                 for message in msg:
-                    print("CLIENT : Message sent to channel {0}.\n".format(channel))
                     await channel.send(message)
+                    print("CLIENT : Message {1} sent to channel {0}.\n".format(channel, i))
+                    i += 1
             else:
                 print("CLIENT : Message sent to channel {0}.\n".format(channel))
                 await channel.send(msg)
-        elif isinstance(self.desired_channels, list):
-            for _channel in self.desired_channels:
-                channel = self.get_channel(_channel)
-                if not channel:
-                    print("FATAL: No channel found with ID {0} in settings.\n".format(channel))
-                    continue
-                if isinstance(msg, list):
-                    for message in msg:
-                        print("CLIENT : Message sent to channel {0}.\n".format(channel))
-                        await channel.send(message)
-                else:
-                    print("CLIENT : Message sent to channel {0}.\n".format(channel))
-                    await channel.send(msg)
-        print('CLIENT: send_word complete.\n')
+
+        # This is the user DM flow.
+        for user_dm in self.user_dm_list:
+            try:
+                user = await self.fetch_user(user_dm)
+            except:
+                print("FATAL: No user found with ID {0} in settings.\n".format(user_dm))
+                continue
+
+            if isinstance(msg, list):
+                i = 1
+                for message in msg:
+                    await user.send(message)
+                    print("CLIENT : Message {1} sent to user {0}.\n".format(user_dm, i))
+                    i += 1
+            else:
+                print("CLIENT : Message sent to user {0}.\n".format(user_dm))
+                await user.send(msg)
+
+        print('CLIENT : send_word complete.\n')
 
     # This will handle custom messages the user can send to the bot.
-    # TODO : Implement a function to request previous WOTD. (Must pass parameter to get request in job.py)
-    # TODO : Implement a function to set the desired time
-    # TODO : Implement a function to set the sending channel/s
-    # TODO : Implement a function for users to sign up to be DM'ed.
+    # signup handles the event of a user joining the user DM list.
+    # todo -> These implementations would require the use of a role system or something to make sure random people
+    #  aren't able to change the time's and channels. This would be a little daunting though so we can keep these
+    #  settings in the JSON file on launch. Sorry!
+    # TODO : Implement a function to set the desired time through the channel.
+    # TODO : Implement a function to set the sending channels. User will input (botprefix + "setchannel") and will add
+    #        current channel to desired_channels list.
     async def on_message(self, message):
         if message.author == self.user:
             return
+
+        if message.content.startswith(self.bot_prefix + "help"):
+            embedVar = discord.Embed(title="Here to Help!",
+                                     description="This is a current list of all available functions in the __Word of the Day__ bot.",
+                                     color=0x607d8b)
+            embedVar.set_author(name="Word of the Day Help.", url="https://github.com/sasho2k/discord-word-of-the-day.")
+            embedVar.set_footer(text="If you have more questions, please visit the GitHub hyperlink at the top!")
+            embedVar.set_thumbnail(url="https://i.ibb.co/GMbg90n/wotd.png")
+            embedVar.add_field(name="{0}signup".format(self.bot_prefix),
+                               value="Use this to sign-up for a DM from the bot at 10:00 am everyday!\n"
+                                     "*This will be customizable soon!*", inline=False)
+            embedVar.add_field(name="{0}getword YYYY/M/D".format(self.bot_prefix),
+                               value="Use this to get an archive word from the day you request!\n"
+                                     "The beginning of the archive is 2011/2/14.\n\n"
+                                     "*Enter in date form [2000/6/5] or [2000/08/02]. The year must be "
+                                     "4 digits long, but month and date can be double digit if single "
+                                     "(i.e 08 for 8). Regular rules apply for double digit days (14).*", inline=False)
+            await message.channel.send(embed=embedVar)
+
+        if message.content.startswith(self.bot_prefix + "signup"):
+            for user in self.user_dm_list:
+                if message.author.id == user:
+                    print("FATAL : User [id: {0}, name: {1}] is already signed up.".format(user, message.author.name))
+                    return
+            self.user_dm_list.append(message.author.id)
+            user = await self.fetch_user(message.author.id)
+            await user.send('Thanks for signing up for Word Of The Day DM\'s!\nYou will be receiving DM\'s at {0}'
+                            ' with your daily message.\n*Please note this will be adjustable in the future.*'.format(
+                self.desired_time))
+            print("CLIENT : Sign up detected, User DM\'ed. New user DM list: {0}".format(self.user_dm_list))
+
+        if message.content.startswith(self.bot_prefix + "getword"):
+            try:
+                date = message.content.split(self.bot_prefix + "getword")[1].strip().split('/')
+
+                if (((int(date[0]) >= 2011) & (int(date[0]) <= int(datetime.now().strftime("%Y"))))
+                        & ((int(date[1]) >= 1) & (int(date[1]) <= 12))
+                        & ((int(date[2]) >= 1) & (int(date[2]) <= 31))):
+                    print("Sending wotd request with date " + date[0] + '/' + date[1] + '/' + date[2])
+                    msg = wotd_flow(date)
+
+                    if isinstance(msg, list):
+                        i = 1
+                        for message in msg:
+                            await message.channel.send(message)
+                            print("CLIENT : Message {1} sent to channel {0}.\n".format(message.channel, i))
+                            i += 1
+                    else:
+                        print("CLIENT : Message sent to channel {0}.\n".format(message.channel))
+                        await message.channel.send(msg)
+                else:
+                    await message.channel.send("```ERROR -> INVALID DATE CONSTRAINTS.```")
+            except:
+                print("FATAL : Error parsing message for getword.")
+                return
 
 
 # Function serves to simplify and beautify the send_word task in the MyClient class by performing word_of_the_day
@@ -93,20 +163,24 @@ class MyClient(discord.Client):
 # 200 = "`ERROR -> BAD REQUEST URL`"
 # 201 = "`ERROR -> ERROR WITH WORD GRAB`"
 # 202 = "`ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB`"
-def wotd_flow():
-    wotd = word_of_the_day([datetime.now().strftime("%Y"),
-                            datetime.now().strftime("%m"),
-                            datetime.now().strftime("%d")])
+def wotd_flow(date):
+    if date is not None:
+        wotd = word_of_the_day([date[0], date[1], date[2]])
+    else:
+        wotd = word_of_the_day([datetime.now().strftime("%Y"),
+                                datetime.now().strftime("%m"),
+                                datetime.now().strftime("%d")])
+
     if wotd == 200:
-        msg = "`ERROR -> BAD REQUEST URL`"
+        msg = "```ERROR -> BAD REQUEST URL```"
     elif wotd == 201:
-        msg = "`ERROR -> ERROR WITH WORD GRAB`"
+        msg = "```ERROR -> ERROR WITH WORD GRAB```"
     elif wotd == 202:
-        msg = "`ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB`"
+        msg = "```ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB```"
     elif isinstance(wotd, WordOfTheDay):
         msg = handle_and_send(wotd)
         if not msg:
-            msg = "`ERROR -> LENGTH/METHOD ISSUE`"
+            msg = "```ERROR -> LENGTH/METHOD ISSUE```"
 
     return msg
 
@@ -114,13 +188,16 @@ def wotd_flow():
 # Our main function. We can initialize the client, grab our settings, and then run the bot.
 # Token contains our token, channels contains a list/int depending on num of channels, time contains desired time.
 # Today date is something we set on initialization of the bot. Wouldn't make sense to be able to init at a given date.
+# Bot prefix is the prefix you would like to assign to your bot.
 # If we run into any errors along the way, we can print them and exit the program.
 def run():
     client = MyClient()
-    token, channels, time = get_settings()
+    print("\nStarting Process...\n")
+    token, channels, bot_time, bot_prefix = get_settings()
     client.desired_channels = channels
-    client.desired_time = datetime.now().strftime("%H:%M") # time
+    client.desired_time = bot_time
     client.today_date = datetime.now().strftime("%d")
+    client.bot_prefix = bot_prefix
 
     try:
         print("CLIENT: Starting run process.\n")

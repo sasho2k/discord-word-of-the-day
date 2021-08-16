@@ -3,7 +3,7 @@ import json
 import re
 
 
-"""" # This file contains the inner checks for the settings file. """
+"""" # This file contains the inner checks for the settings file. Also contains helpers."""
 
 
 # This grabs the token and channel from the settings json file but not before parsing and checking them.
@@ -20,11 +20,26 @@ def get_settings():
     token = check_token(json_data)
     channels = check_channels(json_data)
     time = check_time(json_data)
-    if (token is not None) and (channels is not None) and (time is not None):
-        print("\t[Send message to channels [{0}] at time {1}.]\n".format(channels, time))
-        return token, channels, time
+    prefix = check_bot_prefix(json_data)
+    if (token is not None) and (channels is not None) and (time is not None) and (prefix is not None):
+        print("\t[Send message to channels {0} at time {1}.]\n".format(channels, time))
+        return token, channels, time, prefix
     else:
         exit(0)
+
+
+def check_bot_prefix(json_data):
+    if 'bot_prefix' in json_data:
+        print("Bot Prefix:", json_data.get('bot_prefix'))
+
+        if json_data.get('bot_prefix').strip() != "":
+            return json_data['bot_prefix']
+        else:
+            print("FATAL: Empty bot prefix value.")
+            return None
+    else:
+        print("FATAL: Missing bot prefix value from settings.json.")
+        return None
 
 
 # Check and see if there is an existing json value for time, then check to see if it empty or not.
@@ -56,7 +71,7 @@ def check_time(json_data):
 def check_token(json_data):
     if 'token' in json_data:
         print("Token:", json_data.get('token'))
-        if json_data.get('token') != "":
+        if json_data.get('token').strip() != "":
             return json_data['token']
         else:
             print("FATAL: Empty token value.")
@@ -76,9 +91,10 @@ def check_channels(json_data):
             print("FATAL: Empty channel value.")
             return None
 
+        _channels = []
+
         if isinstance(json_data.get('channels'), list):
             channels = json_data.get('channels')
-            _channels = []
             for channel in channels:
                 try:
                     if channel == "":
@@ -98,7 +114,8 @@ def check_channels(json_data):
             try:
                 channel = int(json_data.get('channels'))
                 print("Channel:", channel)
-                return channel
+                _channels.append(channel)
+                return _channels
             except:
                 print("FATAL: Invalid value in 'channel' json.")
                 return None

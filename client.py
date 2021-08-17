@@ -122,15 +122,15 @@ class MyClient(discord.Client):
         if message.content.startswith(self.bot_prefix + "signup"):
             for user in self.user_dm_list:
                 if message.author.id == user:
-                    print("FATAL : User [id: {0}, name: {1}] is already signed up.".format(user, message.author.name))
-                    message.channel.send("```ERROR -> YOU HAVE ALREADY SIGNED UP```")
+                    print("FATAL : User [id: {0}, name: {1}] is already signed up.\n".format(user, message.author.name))
+                    await message.channel.send("```ERROR -> YOU HAVE ALREADY SIGNED UP```")
                     return
             self.user_dm_list.append(message.author.id)
             user = await self.fetch_user(message.author.id)
             await user.send('Thanks for signing up for Word Of The Day DM\'s!\nYou will be receiving DM\'s at {0}'
                             ' with your daily message.\n*Please note this will be adjustable in the future.*'.format(
                 self.desired_time))
-            print("CLIENT : Sign up detected, User DM\'ed. New user DM list: {0}".format(self.user_dm_list))
+            print("CLIENT : Sign up detected, User DM\'ed. New user DM list: {0}\n".format(self.user_dm_list))
 
         if message.content.startswith(self.bot_prefix + "getword"):
             try:
@@ -139,7 +139,7 @@ class MyClient(discord.Client):
                 if (((int(date[0]) >= 2011) & (int(date[0]) <= int(datetime.now().strftime("%Y"))))
                         & ((int(date[1]) >= 1) & (int(date[1]) <= 12))
                         & ((int(date[2]) >= 1) & (int(date[2]) <= 31))):
-                    print("Sending wotd request with date " + date[0] + '/' + date[1] + '/' + date[2])
+                    print("Sending wotd request with date " + date[0] + '/' + date[1] + '/' + date[2] + '\n')
                     msg = wotd_flow(date)
 
                     if isinstance(msg, list):
@@ -154,7 +154,7 @@ class MyClient(discord.Client):
                 else:
                     await message.channel.send("```ERROR -> INVALID DATE CONSTRAINTS.```")
             except:
-                print("FATAL : Error parsing message for getword.")
+                print("FATAL : Error parsing message for getword.\n")
                 return
 
 

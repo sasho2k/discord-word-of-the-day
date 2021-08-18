@@ -170,42 +170,51 @@ This is a general explanation for the processes and thoughts behind each file in
 
 *More can be found in the comments of the program.*
 
-### Structure
+## Structure
 
 The folder names portray the task/s of the file/s in them.
 
--> 📁 [internals](https://github.com/sasho2k/discord-word-of-the-day/tree/master/internals)
+>'Internals' holds files pertaining to the user manipulation of the internal state of the program through JSON.
+> 
+>  📁 = [internals](https://github.com/sasho2k/discord-word-of-the-day/tree/master/internals)
+>
+>  📁 -> [internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
+>
+>  📁 -> [settings.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/example_settings.json)
 
--> 📁 -> [internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
+> 'Server' holds files that contain functions and classes for the automation of the Discord client and server.
+>
+> 📁 = [server](https://github.com/sasho2k/discord-word-of-the-day/tree/master/server)
+>
+> 📁 -> [client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
+>
+> 📁 -> [run.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/run.py)
 
--> 📁 -> [settings.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/example_settings.json)
->'Internals' holds files pertaining to the user and automated manipulation of internal state of the program.
+> 'Workers' holds all data retrieval and packaging functions and classes relevant to the word of the day. 
+>
+> 📁 = [workers](https://github.com/sasho2k/discord-word-of-the-day/tree/master/workers)
+> 
+> 📁 -> [job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/job.py)
+>
+> 📁 -> [word_of_the_day.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/word_of_the_day.py)
 
--> 📁 [server](https://github.com/sasho2k/discord-word-of-the-day/tree/master/server)
-
--> 📁 -> [client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
-> 'Server' holds files that contain functions and classes 
-
--> 📁 [workers](https://github.com/sasho2k/discord-word-of-the-day/tree/master/workers)
-
--> 📁 -> [job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/job.py)
-
--> 📁 -> [word_of_the_day.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/word_of_the_day.py)
-> Workers holds all data retrieval and packaging, as well as 
-
-### Files
+## Files
 
 #### [Internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
 > Internal works to check the settings file that is required for the bot.
+> 
+> It specifically checks for the existence of a [settings.json file](https://github.com/sasho2k/discord-word-of-the-day/blob/master/example_settings.json) 
+> in either the 📁 internal directory, or the actual project directory.
 >
 > If there are any errors with the settings file, such as missing or unformatted values, we need to inform our user and quit running. The same is true if the file is missing. 
 >
-> We check the file specifically for the ['time'], ['channels'], and ['token'] values. 
+> We check the file specifically for the ['time'], ['channels'], ['token'], and ['bot_prefix'] values. 
 >
 > We can then return the values to our client and setup an instance with the settings.
 
 #### [Client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
-> Client holds all the functions and classes that help the bot work at a server level without crashing on errors. 
+> Client holds all the functions that help the bot work at a server level without crashing on errors. 
+> [Run.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/run.py) will hold the process to start running the client.
 >
 > Specifically, client will hold the MyClient class. The class is initialized after a run through internal and has its variables set to the settings.
 > These variables would be `today_date`, `desired_time`, `daily_sent`, and `desired_channel`.
@@ -217,7 +226,8 @@ The folder names portray the task/s of the file/s in them.
 > 
 > We will also handle for three types of messages coming from the chat: 1. `signup`, 2. `help`, and 3. `getword`. The `BOT_PREFIX` will be the predecessor to all these message types. `signup` will add the user to the bot user DM list to receive DM's at the desired time with the Word of the Day. `help` will hold all info about the available functions. `getword` will be used to access the Word of the Day archive and request previous words.
 #### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/job.py)
-> Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
+> Job holds functions needed to scrape and retrieve the word of the day from the target website. 
+> [Word_of_the_day.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/word_of_the_day.py) holds the data object needed for our functions.
 >
 > The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a `word_of_the_day` object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
 >
@@ -235,11 +245,14 @@ The folder names portray the task/s of the file/s in them.
 # TODO
 **Current TODO List.**
 ```
-... -> Add ability to set desired time from chat [This requires use of roles].
-... -> Add ability to set sending channels [This requires use of roles].
+... -> Add ability to set desired time from chat 
+       [This requires use of roles].
+... -> Add ability to set sending channels 
+       [This requires use of roles].
 ... -> Add ability to sign users up for DMs at a specific time. 
        [This could be a possible memory/time issue if the list is too big, may require searching algorithms]
 ... -> Add ability to send a dynamic and visually appealing message that is over 4000 characters long.
+       [This will be per request. Too much time for something so pointless.]
 ```
 
 # Contact

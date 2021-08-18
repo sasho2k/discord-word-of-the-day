@@ -170,10 +170,27 @@ This is a general explanation for the processes and thoughts behind each file in
 
 *More can be found in the comments of the program.*
 
+### Structure
+
 The folder names portray the task/s of the file/s in them.
 
+-> 📁 [internals](https://github.com/sasho2k/discord-word-of-the-day/tree/master/internals)
 
-#### [Internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internal.py)
+-> 📁 -> [internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
+
+-> 📁 -> [internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
+>Internals holds
+
+-> 📁 [server](https://github.com/sasho2k/discord-word-of-the-day/tree/master/internals)
+
+-> 📁 -> [client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
+> Server holds
+
+-> 📁 [workers](https://github.com/sasho2k/discord-word-of-the-day/tree/master/workers)
+
+### Files
+
+#### [Internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
 > Internal works to check the settings file that is required for the bot.
 >
 > If there are any errors with the settings file, such as missing or unformatted values, we need to inform our user and quit running. The same is true if the file is missing. 
@@ -182,7 +199,7 @@ The folder names portray the task/s of the file/s in them.
 >
 > We can then return the values to our client and setup an instance with the settings.
 
-#### [Client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/client.py)
+#### [Client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
 > Client holds all the functions and classes that help the bot work at a server level without crashing on errors. 
 >
 > Specifically, client will hold the MyClient class. The class is initialized after a run through internal and has its variables set to the settings.
@@ -194,7 +211,7 @@ The folder names portray the task/s of the file/s in them.
 > On the ready of the bot, we can launch our two tasks `check_date()` and `grab_daily_word()`. `check_date()` will work to loop every 30 minutes to check the current date versus the date saved in the Client class, and will let us know if today is a new day by setting `daily_sent` to false. `grab_daily_word()` will check every 15 seconds if the `daily_sent` has is false **AND** if the time is equal to the `desired_time`, and if both are true, we can send our message across our channels.
 > 
 > We will also handle for three types of messages coming from the chat: 1. `signup`, 2. `help`, and 3. `getword`. The `BOT_PREFIX` will be the predecessor to all these message types. `signup` will add the user to the bot user DM list to receive DM's at the desired time with the Word of the Day. `help` will hold all info about the available functions. `getword` will be used to access the Word of the Day archive and request previous words.
-#### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/job.py)
+#### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/job.py)
 > Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
 >
 > The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a `word_of_the_day` object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.

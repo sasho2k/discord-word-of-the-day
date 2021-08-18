@@ -1,6 +1,6 @@
 import discord
 from discord.ext import tasks
-from internal import *
+from internals.internal import *
 from job import *
 
 """
@@ -34,7 +34,7 @@ class MyClient(discord.Client):
             print('CLIENT: Changing self.today_date from {0} to {1}\n'.format(self.today_date,
                                                                               datetime.now().strftime("%d")))
             self.today_date = datetime.now().strftime("%d")
-            if not self.daily_sent:
+            if self.daily_sent:
                 self.daily_sent = False
 
     # Check if our daily message has been sent. If not, check to see if it is the required time.

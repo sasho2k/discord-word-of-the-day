@@ -163,5 +163,5 @@ class MyClient(discord.Client):
                 else:
                     await message.channel.send("```ERROR -> INVALID DATE CONSTRAINTS.```")
             except:
-                print("FATAL : Error parsing message for getword.\n")
+                await message.channel.send("```ERROR : UNABLE TO PARSE GETWORD DATE.```")
                 return

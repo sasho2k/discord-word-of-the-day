@@ -1,7 +1,7 @@
 import os
+from os.path import exists
 import json
 import re
-
 
 """" # This file contains the inner checks for the settings file. Also contains helpers."""
 
@@ -9,18 +9,17 @@ import re
 # This grabs the token and channel from the settings json file but not before parsing and checking them.
 # If there is no settings.json file, then throw a fatal error since these are essential to our bot.
 def get_settings():
-    osErr = 0
-    if not os.path.isfile('../settings.json'):
-        print('FATAL: No settings.json file found in your internals directory.\n')
-        osErr = 1
-    if not os.path.isfile('/settings.json'):
-        print('FATAL: No settings.json file found in your main directory.\n')
-        osErr = 1
+    path = ""
 
-    if osErr == 1:
+    if exists("internals/settings.json"):
+        path = 'internals/settings.json'
+    elif exists(os.getcwd() + "/settings.json"):
+        path = os.getcwd() + "/settings.json"
+    else:
+        print('FATAL: No settings.json file found.\n')
         exit(0)
 
-    with open('../settings.json') as f:
+    with open(path) as f:
         json_data = json.load(f)
     f.close()
 

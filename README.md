@@ -11,6 +11,7 @@
 # Contents
 
 - [Getting Started](#getting-started)
+- [Commands](#commands)
 - [Settings JSON](#settings-json)
 - [How It Works](#how-it-works)
 - [TODO](#todo)
@@ -31,7 +32,7 @@ This is an example of what a standard message from the bot would be like on a da
 >   - Links provided formatted to save space at the bottom of the message.
 > - `Link to webpage` that was scraped to retrieve the information along with a shout-out to Wordnik.
 
-<img src="https://i.ibb.co/R0T6jC6/wordoftheday-JPG.jpg" height="800"/>
+<img src="https://i.ibb.co/pZhVxdZ/wotdJPG.jpg" height="600"/>
 
 > **This is what the bot help embed would display upon request.**
 
@@ -45,12 +46,14 @@ This is an example of what a standard message from the bot would be like on a da
 
 Getting the bot running is fairly simple. It just requires you to have python and the discord.py library downloaded to your environment. From there, you can clone/download the repository and get your own version working! It will also require you to make a `settings.json` file to hold all the info your bot will need. More information can be found at [settings.json](#settings-json).
 
-> To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, and a desired time to send your word of the day.
+> To be able to fill in the required JSON to your needs and to launch the bot, you need a token, a Discord channel id *(or even multiple if you want!)* to send our word to, a bot prefix, and a desired time to send your word of the day.
 > 
 > If you aren't sure where to get a token for your bot from, please see [this](https://discord.com/developers).
 > You will be prompted to login into Discord and setup an application. Please feel free to look around [here](https://discord.com/developers/docs/intro) if you are unfamiliar with any of this.
 > 
 > Also, you can grab channel ID's by right-clicking over a Discord channel and copying it's ID. *(Be mindful you must have developer mode turned on in Discord.)*
+> 
+> The bot prefix is how you will use the bot commands so make sure you dedicate a prefix you will remember and will not interfere with other bots or chat messages.
 
 After you've setup your application on the Discord Developer side, you'll want to generate an invite for your bot.
 I would recommend using [this](https://discordapi.com/permissions.html) site to do so, and setting the permissions to admin. 
@@ -58,11 +61,19 @@ I would recommend using [this](https://discordapi.com/permissions.html) site to 
 > **NOTE**: *You can set your specific permissions if you would like but I am very lazy. Sorry.*
 
 Once the bot is in the Discord server, you can run the main file from your local environment, or via a server, to launch the bot.
+Running the bot is as simple as a one line command.
+```bash
+py main.py
+```
 *This might not be a 100% step by step explanation so feel free to google your way around some things. Otherwise, you should be good to go after these steps.*
 
-And there you go! You've got a bot that will grab the word of the day and send it to channels of your choice.
+Now that the bot is in the server, and you ran it, the status of the bot should go from offline to online.
 
-> **NOTE**: *I would like to add support for messages so users can use the archive system of the website to request previous words whenever they would like.*
+<img src="https://i.ibb.co/mtLZ3tG/wotdonline-JPG.jpg">
+
+There you go! You've got the bot setup in your server.
+
+If you want to see all the cool features, check out the list of [commands](#commands) for the bot.
 
 *If you're interested in a list of future features in more detail, be sure read all the way to [TODO](#TODO) section and also **star** the repository!*
 
@@ -70,13 +81,45 @@ And there you go! You've got a bot that will grab the word of the day and send i
 
 <img src="https://i.ibb.co/zGpTMp4/running.jpg" width="600" height="150"/>
 
+# Commands
+The bot can accept commands through the channel in accordance with your bot prefix:
+
+> **BOT_PREFIX** = $
+> 
+> *Realistically, the bot prefix can be anything you want. It can be #, &, -, _, <, >, /, ?, :, ;, etc...
+In our case, for the sake of examples, we can set it to $.*
+>
+> **Commands**
+> - $help
+> - $getword DATE
+> - $signup
+
+`getword` will access the archive and search for the word of the day on your requested date.
+
+> *Regarding the date formatting when using `getword`...*
+> 
+> Date format for getword is [2000/6/5] or [2000/08/02]. 
+>
+>The year must be 4 digits long, but month and date can be double digit if single (i.e 08 for 8). 
+> 
+>Regular rules apply for double digit days (14).
+
+`help` will return an embed that will remind you of the list of commands and how to access them. 
+*It will also include the bot prefix, that you have assigned via the settings, behind every command so users know EXACTLY how to access them.*
+
+`signup` will sign the current user up to receive daily messages from the bot at the desired time set by the server.
+
+*This is because our client can only hold one desired time, and cannot hold desired times for separate users.* 
+
+**Possible update?**
+
 # Settings JSON
 The settings file is where your bot will hold its sensitive info upon launch.
 It is very important to be familiar with what to insert into the JSON's values and how it will affect the program.
 
 This is what your settings.json should look like when you are preparing to run the bot.
 
-```JSON
+```json
 {
   "token": "your_token!",
   "channels": ["12345","2131","421421"],
@@ -86,7 +129,7 @@ This is what your settings.json should look like when you are preparing to run t
 ```
 Or something like this.
 
-```JSON
+```json
 {
   "token": "your_other_token!",
   "channels": "12345",
@@ -111,7 +154,7 @@ Or something like this.
 > - `bot_prefix` field must contain some type of character sequence. ('$', '-', '&', '@', '#')
 
 **THIS IS WHAT YOUR SETTINGS.JSON SHOULD NOT LOOK LIKE!**
-```JSON
+```json
 {
   "Token": "your_token!",
   "channels": [12345,2131,421421],
@@ -124,7 +167,12 @@ Or something like this.
 
 # How It Works
 This is a general explanation for the processes and thoughts behind each file in the program.
+
 *More can be found in the comments of the program.*
+
+The folder names portray the task/s of the file/s in them.
+
+
 #### [Internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internal.py)
 > Internal works to check the settings file that is required for the bot.
 >
@@ -149,7 +197,7 @@ This is a general explanation for the processes and thoughts behind each file in
 #### [Job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/job.py)
 > Job holds functions and classes needed to scrape and retrieve the word of the day from the target website. *Wordnik daily word of the day vs. Wordnik word of the day archive.*
 >
-> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a word_of_the_day object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. In the future, users will be able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
+> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a `word_of_the_day` object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
 >
 > *Error codes*
 > - 200 =  Did not receive 200 response from request.
@@ -158,6 +206,8 @@ This is a general explanation for the processes and thoughts behind each file in
 >
 > `handle_and_send()` serves to build the message/messages we want to return to our client to send. Sometimes the length of a message is greater than 2000, which is the standard length for discord, so we must split the message in a way that is visually appealing. That is where the handle_long_message function will come in and will return us a list of messages to send.
 >
+> `wotd_flow(date)` serves to make the entire process of receiving a date, checking its return value when passed to `word_of_the_day()`, and returning a message, *or list of messages*, to send to the channel/user, easier by holding all the error checks and parameters needed for these separate processes.
+> 
 > *Very rarely, there is an error where it will return None because we have ran into a message with a length greater than 4000, or two messages. This is honestly because I got lazy and just limited the number of examples to be 5.*
  
 # TODO

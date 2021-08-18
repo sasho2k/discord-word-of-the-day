@@ -2,7 +2,7 @@ from datetime import *
 import discord
 from discord.ext import tasks
 from internals.internal import *
-from job import *
+from workers.job import *
 
 """
 # This file will be the top layer of our program. We can keep it simple with a single class and run() function.
@@ -145,13 +145,13 @@ class MyClient(discord.Client):
 
         if message.content.startswith(self.bot_prefix + "getword"):
             try:
-                date = message.content.split(self.bot_prefix + "getword")[1].strip().split('/')
+                r_date = message.content.split(self.bot_prefix + "getword")[1].strip().split('/')
 
-                if (((int(date[0]) >= 2011) & (int(date[0]) <= int(datetime.now().strftime("%Y"))))
-                        & ((int(date[1]) >= 1) & (int(date[1]) <= 12))
-                        & ((int(date[2]) >= 1) & (int(date[2]) <= 31))):
-                    print("Sending wotd request with date " + date[0] + '/' + date[1] + '/' + date[2] + '\n')
-                    msg = wotd_flow(date)
+                if (((int(r_date[0]) >= 2011) & (int(r_date[0]) <= int(datetime.now().strftime("%Y"))))
+                        & ((int(r_date[1]) >= 1) & (int(r_date[1]) <= 12))
+                        & ((int(r_date[2]) >= 1) & (int(r_date[2]) <= 31))):
+                    print("Sending wotd request with date " + r_date[0] + '/' + r_date[1] + '/' + r_date[2] + '\n')
+                    msg = wotd_flow(r_date)
 
                     if isinstance(msg, list):
                         i = 1
@@ -169,34 +169,6 @@ class MyClient(discord.Client):
                 return
 
 
-# Function serves to simplify and beautify the send_word task in the MyClient class by performing word_of_the_day
-# then collecting and checking its output to return the final msg that should be sent across the channels.
-# Uses the current date for thr request.
-# 200 = "`ERROR -> BAD REQUEST URL`"
-# 201 = "`ERROR -> ERROR WITH WORD GRAB`"
-# 202 = "`ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB`"
-def wotd_flow(date):
-    if date is not None:
-        wotd = word_of_the_day([date[0], date[1], date[2]])
-    else:
-        wotd = word_of_the_day([datetime.now().strftime("%Y"),
-                                datetime.now().strftime("%m"),
-                                datetime.now().strftime("%d")])
-
-    if wotd == 200:
-        msg = "```ERROR -> BAD REQUEST URL```"
-    elif wotd == 201:
-        msg = "```ERROR -> ERROR WITH WORD GRAB```"
-    elif wotd == 202:
-        msg = "```ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB```"
-    elif isinstance(wotd, WordOfTheDay):
-        msg = handle_and_send(wotd)
-        if not msg:
-            msg = "```ERROR -> LENGTH/METHOD ISSUE```"
-
-    return msg
-
-
 # Our main function. We can initialize the client, grab our settings, and then run the bot.
 # Token contains our token, channels contains a list/int depending on num of channels, time contains desired time.
 # Today date is something we set on initialization of the bot. Wouldn't make sense to be able to init at a given date.
@@ -207,7 +179,7 @@ def run():
     print("\nStarting Process...\n")
     token, channels, bot_time, bot_prefix = get_settings()
     client.desired_channels = channels
-    client.desired_time = bot_time #datetime.now().strftime("%H:%M")
+    client.desired_time = bot_time  # datetime.now().strftime("%H:%M")
     client.today_date = datetime.now().strftime("%d")
     client.bot_prefix = bot_prefix
 

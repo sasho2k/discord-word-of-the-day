@@ -1,3 +1,4 @@
+from datetime import *
 import html
 import time
 import sys
@@ -78,10 +79,8 @@ def grab_examples(request_text):
 # Note: We include the sleep to make sure we can reach the status_code and text of the request...
 # ... Weird issue arise otherwise.
 # For errors: 200 = Bad request, 201 = No 'Word' found, 202 = No 'Definitions/Parts of Speech' found
-def word_of_the_day(date):
-    url = "https://www.wordnik.com/word-of-the-day/"
-    if date:
-        url += str(date[0]) + "/" + str(date[1]) + "/" + str(date[2])
+def word_of_the_day(Date):
+    url = "https://www.wordnik.com/word-of-the-day/" + str(Date[0]) + "/" + str(Date[1]) + "/" + str(Date[2])
 
     request = requests.get(url)
     time.sleep(0.2)
@@ -104,22 +103,18 @@ def word_of_the_day(date):
     if len(examples) == 0 | len(source_links) == 0 | len(source_texts) == 0:
         print("WOTD: Did not find 'Examples' and 'Sources' section/s of Word Of The Day\n"
               "*Note that it is possible to not find any Examples for some words.*")
-        return WordOfTheDay().initialize(word, part_of_speech, definitions, examples, source_texts, source_links, url,
-                                         date)
 
-    return WordOfTheDay().initialize(word, part_of_speech, definitions, examples, source_texts, source_links, url, date)
+    return WordOfTheDay().initialize(word, part_of_speech, definitions, examples, source_texts, source_links, url, Date)
 
 
 # Here we can make our string from our object and return the str/list of str we want to send to each channel..
 # Return None if we somehow receive an error.
 def handle_and_send(word_of_the_day_Obj):
-    word, part_of_speech, definitions, examples, source_texts, source_links, url, date = word_of_the_day_Obj
+    word, part_of_speech, definitions, examples, source_texts, source_links, url, wotd_date = word_of_the_day_Obj
 
     defs, part_of_speeches = [], []
 
-    if date:
-        str_build = (
-            "__Word of the Day, {2}/{0}/{1}__\n".format(date[1], date[2], date[0]))
+    str_build = ("__Word of the Day, {2}/{0}/{1}__\n".format(wotd_date[1], wotd_date[2], wotd_date[0]))
 
     str_build += ("`{0}`\n\n".format(word))
     str_build += "__**Definitions**__\n"
@@ -163,6 +158,35 @@ def handle_and_send(word_of_the_day_Obj):
         return handle_long_message(str_build, url)
     else:
         return None
+
+
+# Function serves to simplify and beautify the send_word task for the MyClient class by performing word_of_the_day
+# then collecting and checking its output to return the final msg that should be sent across the channels.
+# Uses the current date for thr request.
+# 200 = "`ERROR -> BAD REQUEST URL`"
+# 201 = "`ERROR -> ERROR WITH WORD GRAB`"
+# 202 = "`ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB`"
+def wotd_flow(in_date):
+    msg = ""
+    if in_date is not None:
+        wotd = word_of_the_day([in_date[0], in_date[1], in_date[2]])
+    else:
+        wotd = word_of_the_day([datetime.now().strftime("%Y"),
+                                datetime.now().strftime("%m"),
+                                datetime.now().strftime("%d")])
+
+    if wotd == 200:
+        msg = "```ERROR -> BAD REQUEST URL```"
+    elif wotd == 201:
+        msg = "```ERROR -> ERROR WITH WORD GRAB```"
+    elif wotd == 202:
+        msg = "```ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB```"
+    elif isinstance(wotd, WordOfTheDay):
+        msg = handle_and_send(wotd)
+        if not msg:
+            msg = "```ERROR -> LENGTH/METHOD ISSUE```"
+
+    return msg
 
 
 # This function will try various methods in order to most efficiently split our string into two messages.

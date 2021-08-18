@@ -1,3 +1,4 @@
+from datetime import *
 import discord
 from discord.ext import tasks
 from internals.internal import *
@@ -127,9 +128,19 @@ class MyClient(discord.Client):
                     return
             self.user_dm_list.append(message.author.id)
             user = await self.fetch_user(message.author.id)
-            await user.send('Thanks for signing up for Word Of The Day DM\'s!\nYou will be receiving DM\'s at {0}'
-                            ' with your daily message.\n*Please note this will be adjustable in the future.*'.format(
-                self.desired_time))
+
+            embedVar = discord.Embed(title="DM Request Received!",
+                                     description="",
+                                     color=0x607d8b)
+            embedVar.set_author(name="Word of the Day Signup.")
+            embedVar.set_footer(text="If you have any concerns with the time, please contact the owner of the server."
+                                     "They will be able to speak to whoever setup the time.")
+            embedVar.set_thumbnail(url="https://i.ibb.co/GMbg90n/wotd.png")
+            embedVar.add_field(name="{0}signup".format(self.bot_prefix),
+                               value="Thank you for signing up Word of the Day DM's at {0} everyday!\n"
+                               .format(self.desired_time), inline=False)
+            await user.send(embed=embedVar)
+
             print("CLIENT : Sign up detected, User DM\'ed. New user DM list: {0}\n".format(self.user_dm_list))
 
         if message.content.startswith(self.bot_prefix + "getword"):

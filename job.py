@@ -1,6 +1,5 @@
 import html
 import time
-from datetime import datetime
 import sys
 import re
 import requests

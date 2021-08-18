@@ -179,16 +179,18 @@ The folder names portray the task/s of the file/s in them.
 -> 📁 -> [internal.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/internals/internal.py)
 
 -> 📁 -> [settings.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/example_settings.json)
->Internals holds
+>'Internals' holds files pertaining to the user and automated manipulation of internal state of the program.
 
 -> 📁 [server](https://github.com/sasho2k/discord-word-of-the-day/tree/master/server)
 
 -> 📁 -> [client.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/client.py)
-> Server holds
+> 'Server' holds files that contain functions and classes 
 
 -> 📁 [workers](https://github.com/sasho2k/discord-word-of-the-day/tree/master/workers)
 
 -> 📁 -> [job.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/server/job.py)
+
+-> 📁 -> [word_of_the_day.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/word_of_the_day.py)
 > Workers holds all data retrieval and packaging, as well as 
 
 ### Files

@@ -1,4 +1,4 @@
-import server.client
+import server.run
 
 if __name__ == '__main__':
-    server.client.run()
+    server.run.run()

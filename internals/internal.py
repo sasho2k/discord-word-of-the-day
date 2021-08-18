@@ -17,6 +17,8 @@ def get_settings():
         path = os.getcwd() + "/settings.json"
     else:
         print('FATAL: No settings.json file found.\n')
+        if exists("example_settings.json"):
+            print('FATAL : Replace the example_settings.json with a settings.json file, then fill it with your info.')
         exit(0)
 
     with open(path) as f:

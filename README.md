@@ -233,8 +233,19 @@ The folder names portray the task/s of the file/s in them.
 > This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
 > 
 > The request made in `word_of_the_day()` to the wordnik website has custom headers to spoof the request. 
-> ``` python
-> 
+> ```
+> headers = {
+>        "Accept": "*/*",
+>        "Accept-Language": "en-US,en;q=0.5",
+>        "Connection": "keep-alive",
+>        "Host": "www.wordnik.com",
+>        "Referer": url,
+>        "Sec-Fetch-Dest": "empty",
+>        "Sec-Fetch-Mode": "cors",
+>        "Sec-Fetch-Site": "same-origin",
+>        "TE": "trailers",
+>        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"
+>    }
 > ```
 > *I honestly believe they added this after I pinged their API an excessive amount, so they're taking measures to secure the request.
 > This was solved by adding a few headers. We'll see what else they have to come.*

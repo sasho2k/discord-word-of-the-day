@@ -1,7 +1,7 @@
 # Word Of The Day
 *Welcome to the ReadME of Word Of The Day Bot, written in Python for Discord using [discord.py](https://github.com/Rapptz/discord.py)!*
 
-*Directly below is a quickstart to setting up and running the bot. Start here unless you want to find out some more about the project.*
+*Directly below is a quickstart to setting up and running the bot. Start here unless you want to find out some more about the project and how it will look in Discord!*
 *[Get Started!](#getting-started)*
 
 **Please note this is a work in progress and there might be errors. Feel free to reach out to me if you find any issues.**

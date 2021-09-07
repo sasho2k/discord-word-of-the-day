@@ -18,6 +18,7 @@ class MyClient(discord.Client):
     desired_time = ""
     desired_channels = []
     user_dm_list = []
+    timezone = timezone(offset=timedelta(hours=-4))
 
     # The simple on-ready function where our tasks will live.
     async def on_ready(self):
@@ -29,10 +30,11 @@ class MyClient(discord.Client):
     # set our daily sent flag to False while replacing the self.date with the current date.
     @tasks.loop(minutes=30)
     async def check_date(self):
-        if datetime.now().strftime("%d") != self.today_date:
+        if datetime.now(tz=self.timezone).strftime("%d") != self.today_date:
             print('CLIENT: Changing self.today_date from {0} to {1}\n'.format(self.today_date,
-                                                                              datetime.now().strftime("%d")))
-            self.today_date = datetime.now().strftime("%d")
+                                                                              datetime.now(tz=self.timezone).strftime(
+                                                                                  "%d")))
+            self.today_date = datetime.now(tz=self.timezone).strftime("%d")
             if self.daily_sent:
                 self.daily_sent = False
 
@@ -42,7 +44,7 @@ class MyClient(discord.Client):
     @tasks.loop(seconds=15)
     async def grab_daily_word(self):
         if not self.daily_sent:
-            if datetime.now().strftime("%H:%M") == self.desired_time:
+            if datetime.now(tz=self.timezone).strftime("%H:%M") == self.desired_time:
                 await self.send_word()
                 self.daily_sent = True
 
@@ -145,7 +147,7 @@ class MyClient(discord.Client):
             try:
                 r_date = message.content.split(self.bot_prefix + "getword")[1].strip().split('/')
 
-                if (((int(r_date[0]) >= 2011) & (int(r_date[0]) <= int(datetime.now().strftime("%Y"))))
+                if (((int(r_date[0]) >= 2011) & (int(r_date[0]) <= int(datetime.now(tz=self.timezone).strftime("%Y"))))
                         & ((int(r_date[1]) >= 1) & (int(r_date[1]) <= 12))
                         & ((int(r_date[2]) >= 1) & (int(r_date[2]) <= 31))):
                     print("Sending wotd request with date " + r_date[0] + '/' + r_date[1] + '/' + r_date[2] + '\n')

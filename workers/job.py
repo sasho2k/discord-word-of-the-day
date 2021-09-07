@@ -3,7 +3,10 @@ import html
 import time
 import sys
 import re
+import urllib.request
+
 import requests
+
 from workers.word_of_the_day import *
 
 """ # This file will serve as the word of the day grab, and that will be its job. """
@@ -56,31 +59,47 @@ def grab_examples(request_text):
 
 
 # This grabs the word of the day from Merriam Webster's Word Of The Day using the helper functions and returns an
-# object containing all the information we need to make a message.
-# Note: We include the sleep to make sure we can reach the status_code and text of the request...
+# object containing all the information we need to make a message. If we don't get a error, we can continue with
+# the process and start returning the wotd object. We get returned a wotd object if we are successful, else we
+# get a 201 or 202.
+# Note: We include the sleep to make sure we can reach the text of the request...
 # ... Weird issue arise otherwise.
-# For errors: 200 = Bad request, 201 = No 'Word' found, 202 = No 'Definitions/Parts of Speech' found
+# For errors: 200 = Bad request
 def word_of_the_day(Date):
     url = "https://www.wordnik.com/word-of-the-day/" + str(Date[0]) + "/" + str(Date[1]) + "/" + str(Date[2])
-
-    request = requests.get(url)
+    headers = {
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive",
+        "Host": "www.wordnik.com",
+        "Referer": url,
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "TE": "trailers",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0"
+    }
+    request = requests.get(url, headers=headers)
+    if request.status_code != 200:
+        return 200
     time.sleep(0.2)
 
-    if request.status_code != 200:
-        print("WOTD: Did not receive 200 response from request.\n")
-        return 200
+    return return_wotd_object(request.text, url, Date)
 
-    word = grab_word(request.text)
+
+# This is the supporting function for word_of_the_day
+def return_wotd_object(text, url, Date):
+    word = grab_word(text)
     if not word:
         print("WOTD: Did not find the 'Word' section of Word Of The Day.\n")
         return 201
 
-    part_of_speech, definitions = grab_definitions(request.text)
+    part_of_speech, definitions = grab_definitions(text)
     if len(part_of_speech) == 0 | len(definitions) == 0:
         print("WOTD: Did not find the 'Definition' and 'Part Of Speech' section/s of Word Of The Day")
         return 202
 
-    examples, source_texts, source_links = grab_examples(request.text)
+    examples, source_texts, source_links = grab_examples(text)
     if len(examples) == 0 | len(source_links) == 0 | len(source_texts) == 0:
         print("WOTD: Did not find 'Examples' and 'Sources' section/s of Word Of The Day\n"
               "*Note that it is possible to not find any Examples for some words.*")
@@ -156,9 +175,7 @@ def wotd_flow(in_date):
                                 datetime.now().strftime("%m"),
                                 datetime.now().strftime("%d")])
 
-    if wotd == 200:
-        msg = "```ERROR -> BAD REQUEST URL```"
-    elif wotd == 201:
+    if wotd == 201:
         msg = "```ERROR -> ERROR WITH WORD GRAB```"
     elif wotd == 202:
         msg = "```ERROR -> ERROR WITH DEFINITION/PART OF SPEECH GRAB```"

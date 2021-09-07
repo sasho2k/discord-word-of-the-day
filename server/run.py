@@ -14,7 +14,7 @@ def run():
     token, channels, bot_time, bot_prefix = get_settings()
     client.desired_channels = channels
     client.desired_time = bot_time  # datetime.now().strftime("%H:%M")
-    client.today_date = datetime.now().strftime("%d")
+    client.today_date = datetime.now(tz=client.timezone).strftime("%d")
     client.bot_prefix = bot_prefix
 
     try:

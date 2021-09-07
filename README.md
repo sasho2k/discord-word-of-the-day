@@ -229,7 +229,15 @@ The folder names portray the task/s of the file/s in them.
 > Job holds functions needed to scrape and retrieve the word of the day from the target website. 
 > [Word_of_the_day.py](https://github.com/sasho2k/discord-word-of-the-day/blob/master/workers/word_of_the_day.py) holds the data object needed for our functions.
 >
-> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions and return one of two things; A error code or a `word_of_the_day` object (Also declared here in job.py). This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
+> The task of `word_of_the_day()` is to retrieve the word of the day via helper functions, `return_wotd_objectt()` being the main one, and return one of two things; A error code or a `word_of_the_day` object (Also declared here in job.py).
+> This function also takes in a date, which is normally set to the current date in order to get the current word of the day. Users are able to request a previous word of the day via the chat *(if they supply a valid date of course)*.
+> 
+> The request made in `word_of_the_day()` to the wordnik website has custom headers to spoof the request. 
+> ``` python
+> 
+> ```
+> *I honestly believe they added this after I pinged their API an excessive amount, so they're taking measures to secure the request.
+> This was solved by adding a few headers. We'll see what else they have to come.*
 >
 > *Error codes*
 > - 200 =  Did not receive 200 response from request.

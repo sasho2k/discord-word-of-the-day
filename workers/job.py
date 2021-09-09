@@ -3,10 +3,7 @@ import html
 import time
 import sys
 import re
-import urllib.request
-
 import requests
-
 from workers.word_of_the_day import *
 
 """ # This file will serve as the word of the day grab, and that will be its job. """

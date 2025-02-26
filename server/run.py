@@ -9,7 +9,7 @@ from server.client import *
 
 
 def run():
-    client = MyClient()
+    client = MyClient(intents=discord.Intents.all())
     print("\nStarting Process...\n")
     token, channels, bot_time, bot_prefix = get_settings()
     client.desired_channels = channels
